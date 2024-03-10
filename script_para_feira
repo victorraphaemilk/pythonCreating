@@ -1,0 +1,72 @@
+lista_feira = [
+    ['banana', 3], 
+    ['leite', 7], 
+    ['fio_dental', 4], 
+    ['carne', 10]
+]
+
+list_lower = []
+for i in lista_feira:
+    list_lower.append([i[0].lower(), i[1]])
+
+
+def feira():
+    contador = 0
+    for i in lista_feira:
+        contador += i[1]
+    return contador
+
+mensagem = '''
+Bem vindo a sua lista de feira
+Escolha as opções
+1 - Soma total
+2 - Procurar produto
+3 - Procurar e somar
+'''
+
+sparar = False
+
+
+
+def procurar_produto():
+    produto = input('Qual o produto que deseja procurar? ').lower()
+
+    for i in  list_lower:
+        if produto == i[0]:
+            print(f'{produto} custa {i[1]}')
+    return i    
+
+def somar_produtos():
+    soma_lista = []
+    while True:
+        produto = input('Qual o produto que deseja somar? ').lower()
+        
+        for i in list_lower:
+            if i[0] == produto:
+                soma_lista.append(i)
+        parar = input('Deseja parar? ')
+        if parar == 'S':
+            break
+    if len(soma_lista)>= 1:
+        somatorio = 0
+        for somar in soma_lista:
+            somatorio += somar[1]
+        print(f'{soma_lista} é igual a {somatorio}')    
+    
+
+
+while True:
+    print(mensagem)
+    escolha = int(input('Escolha 1, 2, 3 ou 4 para parar '))
+
+    match escolha:
+        case 1:
+            print(feira())
+        case 2:
+            procurar_produto()
+        case 3:
+            somar_produtos()
+        case 4:
+            parar = input('Deseja parar? (S/N)')
+            if parar == 'S':
+               break
